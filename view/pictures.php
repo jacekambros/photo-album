@@ -11,17 +11,22 @@ include 'view/view.php';
 
 class pictures_view extends View
 {
-    public function index(){
+    public function indexShow(){
         $pic = $this->loadModel('pictures');
         $this->set('pictures', $pic->getAll());
-        $this->render('indexPicture');
-
+        $this->render('indexPictureShow');
     }
 
-    public function one(){
+    public function indexEdit(){
+        $pic = $this->loadModel('pictures');
+        $this->set('pictures', $pic->getAll());
+        $this->render('indexPictureEdit');
+    }
+
+    public function oneEdit(){
         $pic = $this->loadModel('pictures');
         $this->set("pictures", $pic->getOne($_GET["idObraz"]));
-        $this->render("onePicture");
+        $this->render("onePictureEdit");
     }
 
     public function oneShow(){
@@ -33,7 +38,6 @@ class pictures_view extends View
 
     public function atrapa(){
         print("<h1>ATRAPA (pictures_view->atrapa)</h1>");
-
     }
 
 }

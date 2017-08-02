@@ -10,7 +10,8 @@
  *
  * @abstract
  */
-abstract class View{
+abstract class View
+{
 
     /**
      * It loads the object with the model.
@@ -20,26 +21,27 @@ abstract class View{
      *
      * @return object
      */
-    public function loadModel($name, $path='model/') {
-        $path=$path.$name.'.php';
-        $name=$name.'_model';
+    public function loadModel($name, $path = 'model/')
+    {
+        $path = $path . $name . '.php';
+        $name = $name . '_model';
         try {
-            if(is_file($path)) {
+            if (is_file($path)) {
                 require $path;
-                $ob=new $name();
+                $ob = new $name();
             } else {
-                throw new Exception('Can not open model '.$name.' in: '.$path);
+                throw new Exception('Can not open model ' . $name . ' in: ' . $path);
             }
-        }
-        catch(Exception $e) {
-            echo $e->getMessage().'<br />
-                File: '.$e->getFile().'<br />
-                Code line: '.$e->getLine().'<br />
-                Trace: '.$e->getTraceAsString();
+        } catch (Exception $e) {
+            echo $e->getMessage() . '<br />
+                File: ' . $e->getFile() . '<br />
+                Code line: ' . $e->getLine() . '<br />
+                Trace: ' . $e->getTraceAsString();
             exit;
         }
         return $ob;
     }
+
     /**
      * It includes template file.
      *
@@ -48,23 +50,40 @@ abstract class View{
      *
      * @return void
      */
-    public function render($name, $path='templates/') {
-        $path=$path.$name.'.html.php';
+    public function render($name, $path = 'templates/', $noIncludeHeaderFooter = false)
+    {
+        $headerPath = $path . 'header.html.php';
+        $footerPath = $path . 'footer.html.php';
+        $path = $path . $name . '.html.php';
+        if ($noIncludeHeaderFooter) {
+            $this->requireFile($name, $path);
+
+        } else {
+            $this->requireFile('header.html.php',$headerPath);
+            $this->requireFile($name, $path);
+            $this->requireFile('footer.html.php',$footerPath);
+        }
+
+    }
+
+    private function requireFile($name, $path)
+    {
         try {
-            if(is_file($path)) {
+            if (is_file($path)) {
                 require $path;
             } else {
-                throw new Exception('Can not open template '.$name.' in: '.$path);
+                throw new Exception('Can not open template ' . $name . ' in: ' . $path);
             }
-        }
-        catch(Exception $e) {
-            echo $e->getMessage().'<br />
-                File: '.$e->getFile().'<br />
-                Code line: '.$e->getLine().'<br />
-                Trace: '.$e->getTraceAsString();
+        } catch (Exception $e) {
+            echo $e->getMessage() . '<br />
+                File: ' . $e->getFile() . '<br />
+                Code line: ' . $e->getLine() . '<br />
+                Trace: ' . $e->getTraceAsString();
             exit;
         }
+
     }
+
     /**
      * It sets data.
      *
@@ -73,9 +92,11 @@ abstract class View{
      *
      * @return void
      */
-    public function set($name, $value) {
-        $this->$name=$value;
+    public function set($name, $value)
+    {
+        $this->$name = $value;
     }
+
     /**
      * It gets data.
      *
@@ -83,7 +104,8 @@ abstract class View{
      *
      * @return mixed
      */
-    public function get($name) {
+    public function get($name)
+    {
         return $this->$name;
     }
 }

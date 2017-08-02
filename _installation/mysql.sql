@@ -7,3 +7,5 @@ CREATE TABLE IF NOT EXISTS `login`.`pictures` (
   PRIMARY KEY (`picture_id`),
   UNIQUE KEY `picture_file` (`picture_file`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='picture data';
+
+ALTER TABLE users ADD edit VARCHAR(1)

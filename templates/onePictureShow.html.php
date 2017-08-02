@@ -14,6 +14,9 @@ foreach ($this->get('pictures') as $picture) { ?>
         <input type="text" name="file" value='<?php echo $picture[1]?>' readonly>
         <a href="index.php?task=pictures&action=show&idObraz=<?php echo $picture[0]-1?>">Poprzedni</a>
         <a href="index.php?task=pictures&action=show&idObraz=<?php echo $picture[0]+1?>">Następny</a>
+        <a href="index.php">Indeks</a>
+
+
     </form>
 
     <textarea form="opisObrazu" name="description" cols="40" rows="5"><?php echo empty($picture[3])?$_SESSION['defaultDescription']:$picture[3];?></textarea>

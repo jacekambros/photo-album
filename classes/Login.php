@@ -52,7 +52,7 @@ class Login
         } elseif (!empty($_POST['user_name']) && !empty($_POST['user_password'])) {
 
             // create a database connection, using the constants from config/db.php (which we loaded in index.php)
-            $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+            $this->db_connection = new mysqli(DB_HOST, DB_USER_READ, DB_PASS_READ, DB_NAME);
 
             // change character set to utf8 and check it
             if (!$this->db_connection->set_charset("utf8")) {
@@ -67,7 +67,7 @@ class Login
 
                 // database query, getting all the info of the selected user (allows login via email address in the
                 // username field)
-                $sql = "SELECT user_name, user_email, user_password_hash
+                $sql = "SELECT user_name, user_email, user_password_hash, edit
                         FROM users
                         WHERE user_name = '" . $user_name . "' OR user_email = '" . $user_name . "';";
                 $result_of_login_check = $this->db_connection->query($sql);
@@ -86,6 +86,7 @@ class Login
                         $_SESSION['user_name'] = $result_row->user_name;
                         $_SESSION['user_email'] = $result_row->user_email;
                         $_SESSION['user_login_status'] = 1;
+                        $_SESSION['edit'] = $result_row->edit;
 
                     } else {
                         $this->errors[] = "Wrong password. Try again.";

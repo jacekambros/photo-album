@@ -21,15 +21,21 @@ class pictures_controller extends controller
         $model->insert_pictures();
     }
 
-    public function index(){
+    public function indexShow(){
         $view = $this->loadView('pictures',$path='view/');
-        $view->index();
+        $view->indexShow();
 
     }
 
-    public function edycja(){
+    public function indexEdit(){
         $view = $this->loadView('pictures',$path='view/');
-        $view->one();
+        $view->indexEdit();
+
+    }
+
+    public function edit(){
+        $view = $this->loadView('pictures',$path='view/');
+        $view->oneEdit();
     }
 
     public function show(){
@@ -41,10 +47,8 @@ class pictures_controller extends controller
     public function save(){
         $model = $this->loadModel('pictures',$path="model/");
         $model->save($_POST);
-        $this->redirect('index.php?task=pictures&action=edycja&idObraz='.$_GET['idObraz']);
+        $this->redirect('index.php?task=pictures&action=edit&idObraz='.$_GET['idObraz']);
     }
-
-
 
 
 }

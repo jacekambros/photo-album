@@ -5,6 +5,7 @@
         <link href="css/style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <h1>Bieszczady lipiec 2017</h1>
         <ul>
             <li><a href="index.php?logout">Logout</a></li>
             <!-- Z przykladu MVC
