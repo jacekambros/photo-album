@@ -1,5 +1,6 @@
-    <footer>
-        by JA
-    </footer>
+</main>
+<footer>
+    by JA
+</footer>
 </body>
 </html>

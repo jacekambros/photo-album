@@ -1,0 +1,71 @@
+body {
+    background-color: forestgreen;
+}
+
+header {
+    background-color: lightgreen;
+}
+
+
+
+.tytul {
+    /*float: left;*/
+    width: 70%;
+    display: inline-block;
+}
+
+.login {
+    /*float: left;*/
+    width: 25%;
+    display: inline-block;
+    text-align: right;
+}
+
+main {
+    background-color: green;
+    clear: both;
+    text-align: center;
+
+}
+
+.menu {
+    margin: auto;
+}
+
+.logowanie {
+
+}
+
+.obrazek {
+    width: 70%;
+    margin: auto;
+    position: relative;
+
+}
+
+.obrazek img {
+    width: 100%;
+}
+
+.obrazek p {
+    position: absolute;
+    top: 0px;
+    text-align: center;
+
+}
+
+.opis {
+    float: right;
+    width: 33%;
+}
+
+.edycja .obrazek {
+    width: 70%;
+    float: left;
+}
+
+footer {
+    background-color: darkgreen;
+    clear: both;
+    text-align: right;
+}
